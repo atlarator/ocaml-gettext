@@ -1,0 +1,4 @@
+usr/bin
+@OCamlStdlibDir@/gettext
+@OCamlStdlibDir@/gettext-camomile
+@OCamlStdlibDir@/gettext-stub

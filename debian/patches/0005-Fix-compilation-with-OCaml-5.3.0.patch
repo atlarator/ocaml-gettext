@@ -1,0 +1,124 @@
+From: Stephane Glondu <steph@glondu.net>
+Date: Wed, 15 Jan 2025 05:18:23 +0100
+Subject: Fix compilation with OCaml 5.3.0
+
+---
+ src/bin/ocaml-xgettext/xgettext.ml | 44 ++++++++++++++++++++++++++++----------
+ 1 file changed, 33 insertions(+), 11 deletions(-)
+
+diff --git a/src/bin/ocaml-xgettext/xgettext.ml b/src/bin/ocaml-xgettext/xgettext.ml
+index e79a3b3..8f54efc 100644
+--- a/src/bin/ocaml-xgettext/xgettext.ml
++++ b/src/bin/ocaml-xgettext/xgettext.ml
+@@ -121,7 +121,9 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+   | Pexp_apply
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++          { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+           { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ } )
+ #else
+           { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ } )
+@@ -133,13 +135,17 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+   | Pexp_apply
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++          { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+           { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ } )
+ #else
+           { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ } )
+ #endif
+         :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++             { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (plural, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+              { pexp_desc = Pexp_constant (Pconst_string (plural, _, _)); _ } )
+ #else
+              { pexp_desc = Pexp_constant (Pconst_string (plural, _)); _ } )
+@@ -152,7 +158,9 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         _
+         :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++             { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+              { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ } )
+ #else
+              { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ } )
+@@ -165,13 +173,17 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         _
+         :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++             { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (domain, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+              { pexp_desc = Pexp_constant (Pconst_string (domain, _, _)); _ } )
+ #else
+              { pexp_desc = Pexp_constant (Pconst_string (domain, _)); _ } )
+ #endif
+            :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++                { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ }
++#elif OCAML_VERSION >= (4, 11, 0)
+                 { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ }
+ #else
+                 { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ }
+@@ -185,13 +197,17 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         _
+         :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++             { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+              { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ } )
+ #else
+              { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ } )
+ #endif
+            :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++                { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (plural, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+                 { pexp_desc = Pexp_constant (Pconst_string (plural, _, _)); _ } )
+ #else
+                 { pexp_desc = Pexp_constant (Pconst_string (plural, _)); _ } )
+@@ -204,20 +220,26 @@ let visit_expr (iterator : Ast_iterator.iterator) expr =
+       ( { pexp_desc = Pexp_ident { Asttypes.txt = lid; _ }; _ },
+         _
+         :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++             { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (domain, _, _); _ }; _ } )
++#elif OCAML_VERSION >= (4, 11, 0)
+              { pexp_desc = Pexp_constant (Pconst_string (domain, _, _)); _ } )
+ #else
+              { pexp_desc = Pexp_constant (Pconst_string (domain, _)); _ } )
+ #endif
+            :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++                { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (singular, _, _); _ }; _ }
++#elif OCAML_VERSION >= (4, 11, 0)
+                 { pexp_desc = Pexp_constant (Pconst_string (singular, _, _)); _ }
+ #else
+                 { pexp_desc = Pexp_constant (Pconst_string (singular, _)); _ }
+ #endif
+               )
+               :: ( Asttypes.Nolabel,
+-#if OCAML_VERSION >= (4, 11, 0)
++#if OCAML_VERSION >= (5, 3, 0)
++                   { pexp_desc = Pexp_constant { pconst_desc = Pconst_string (plural, _, _); _ }; _ }
++#elif OCAML_VERSION >= (4, 11, 0)
+                    { pexp_desc = Pexp_constant (Pconst_string (plural, _, _)); _ }
+ #else
+                    { pexp_desc = Pexp_constant (Pconst_string (plural, _)); _ }

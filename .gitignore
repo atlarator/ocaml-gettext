@@ -1,0 +1,10 @@
+/_build/
+/configure
+/dist/
+/po/*.mo
+/po/fr.po.bak
+/test/test
+/test/tests/
+*.merlin
+/*.install
+*.swp

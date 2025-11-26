@@ -1,5 +1,192 @@
-template-repository (1.0-1) unstable; urgency=medium
+ocaml-gettext (0.5.0+really0.4.2-1) unstable; urgency=medium
 
-  * Initial release
+  * Team upload
+  * Revert upstream to 0.4.2 (Closes: #1101568)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Stéphane Glondu <glondu@debian.org>  Sat, 29 Mar 2025 15:32:44 +0100
+
+ocaml-gettext (0.5.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - all patches have been merged upstream
+  * Update Homepage
+  * Bump Standards-Version to 4.7.2
+
+ -- Stéphane Glondu <glondu@debian.org>  Fri, 28 Feb 2025 06:44:36 +0100
+
+ocaml-gettext (0.4.2-5) unstable; urgency=medium
+
+  * Team upload
+  * Fix compilation with OCaml 5.3.0
+
+ -- Stéphane Glondu <glondu@debian.org>  Wed, 15 Jan 2025 05:27:48 +0100
+
+ocaml-gettext (0.4.2-4) unstable; urgency=medium
+
+  * Fix compilation with OCaml 5.x
+
+ -- Stéphane Glondu <glondu@debian.org>  Tue, 18 Jun 2024 08:57:28 +0200
+
+ocaml-gettext (0.4.2-3) unstable; urgency=medium
+
+  * Team upload
+  * Fix compilation with camomile 2.0.0
+  * Bump debhelper compat level to 13
+
+ -- Stéphane Glondu <glondu@debian.org>  Sun, 08 Oct 2023 10:15:25 +0200
+
+ocaml-gettext (0.4.2-2) unstable; urgency=medium
+
+  * Team upload
+  * Use ocam_dune DH buildsystem (Closes: #1042098)
+  * Bump Standards-Version to 4.6.2
+
+ -- Stéphane Glondu <glondu@debian.org>  Thu, 27 Jul 2023 06:31:05 +0200
+
+ocaml-gettext (0.4.2-1) unstable; urgency=medium
+
+  * New upstream version 0.4.2
+  * Update copyright
+  * Add Rules-Requires-Root
+  * Update dependencies
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Mon, 15 Jun 2020 12:32:40 +0200
+
+ocaml-gettext (0.4.1-2) unstable; urgency=medium
+
+  * Fix building on bytecode architectures
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Sun, 20 Oct 2019 22:22:54 +0200
+
+ocaml-gettext (0.4.1-1) unstable; urgency=medium
+
+  * New upstream version 0.4.1
+  * refresh patches
+  * Update to dune build system
+  * Bump Standards-Version to 4.4.1 (no change)
+  * Drop compat to 11 to solve symbol stripping issues
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Thu, 17 Oct 2019 12:43:13 +0200
+
+ocaml-gettext (0.3.7-4) unstable; urgency=medium
+
+  [ Stéphane Glondu ]
+  * Fix compilation with -safe-string
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Mon, 19 Aug 2019 23:14:53 +0200
+
+ocaml-gettext (0.3.7-3) unstable; urgency=medium
+
+  * Fix building on bytecode architectures
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Sat, 27 Jul 2019 10:43:38 -0300
+
+ocaml-gettext (0.3.7-2) unstable; urgency=medium
+
+  * New uploader (Closes: #784039)
+  * Fix watch file
+  * Convert copyright to 1.0 format
+  * Update VCS-* to point to salsa
+  * Move Standards-Version to 4.4.0:
+    - Move to dh
+
+ -- Kyle Robbertze <paddatrapper@debian.org>  Fri, 26 Jul 2019 12:29:26 -0300
+
+ocaml-gettext (0.3.7-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Update Vcs-*
+
+ -- Stéphane Glondu <glondu@debian.org>  Thu, 20 Jul 2017 08:33:35 +0200
+
+ocaml-gettext (0.3.5-3) unstable; urgency=medium
+
+  * Team upload.
+  * Fix a spelling error (Closes: #848619). Thanks to Eriberto for
+    reporting it!
+
+ -- Mehdi Dogguy <mehdi@debian.org>  Wed, 21 Dec 2016 14:24:36 +0100
+
+ocaml-gettext (0.3.5-2) unstable; urgency=medium
+
+  * Team upload.
+  * No longer build ml2c_lc as inline function (Closes: #794732)
+
+ -- Hilko Bengen <bengen@debian.org>  Fri, 14 Aug 2015 21:38:10 +0200
+
+ocaml-gettext (0.3.5-1) unstable; urgency=low
+
+  [ Stéphane Glondu ]
+  * New upstream release
+
+  [ Sylvain Le Gall ]
+  * Remove Sylvain Le Gall from Uploaders.
+
+  [ Mehdi Dogguy ]
+  * Team upload.
+  * Upload to instable.
+
+ -- Mehdi Dogguy <mehdi@debian.org>  Fri, 31 Jul 2015 18:39:50 +0000
+
+ocaml-gettext (0.3.4-1) unstable; urgency=low
+
+  [ Stéphane Glondu ]
+  * Team upload
+  * Fix versioned build-deps to ensure smoother backports
+  * Switch source package format to 3.0 (quilt)
+  * Bump Standards-Versions to 3.9.2
+  * Bump debhelper compatibility level to 8
+
+  [ Sylvain Le Gall ]
+  * New upstream release
+    * Use camomile 0.8.3 (Closes: #636026)
+
+ -- Stéphane Glondu <glondu@debian.org>  Fri, 12 Aug 2011 08:12:16 +0200
+
+ocaml-gettext (0.3.3-1) unstable; urgency=low
+
+  * New upstream release (Closes: #551234)
+    * Remove all patches (applied upstream), comment dpatch
+      build-dependency
+  * Use dh-ocaml 0.9 features, tighten dependency on camomile for automatic
+    dependencies computation
+  * Upgrade Standards-Version to 3.8.3 (section ocaml)
+
+ -- Sylvain Le Gall <gildor@debian.org>  Tue, 03 Nov 2009 22:10:05 +0000
+
+ocaml-gettext (0.3.2-2) unstable; urgency=low
+
+  * Switch packaging to git
+  * Set maintainer to Debian OCaml Maintainers
+  * Add dh-ocaml build-dependency (rules/ocaml.mk)
+  * Upgrade Standards-Version to 3.8.0 (debian/README.source)
+  * Add ${misc:Depends} to dependencies
+  * Update debian/copyright file to use
+    http://wiki.debian.org/Proposals/CopyrightFormat
+  * Add patch camlp4_311 to fix missing dynlink.cma
+
+ -- Sylvain Le Gall <gildor@debian.org>  Tue, 03 Mar 2009 19:57:03 +0100
+
+ocaml-gettext (0.3.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sylvain Le Gall <gildor@debian.org>  Thu, 05 Jun 2008 20:35:13 +0000
+
+ocaml-gettext (0.3.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #479305)
+  * Reformat debian/control description (Closes: #480337)
+
+ -- Sylvain Le Gall <gildor@debian.org>  Sat, 10 May 2008 00:28:03 +0200
+
+ocaml-gettext (0.3.0-1) unstable; urgency=low
+
+  [ Sylvain Le Gall ]
+  * Initial upload (Closes: #305743)
+
+  [ Stefano Zacchiroli ]
+  * fix vcs-svn field to point just above the debian/ dir
+
+ -- Sylvain Le Gall <gildor@debian.org>  Wed, 30 Apr 2008 00:20:58 +0200

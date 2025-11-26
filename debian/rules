@@ -1,4 +1,22 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+include /usr/share/dpkg/pkg-info.mk
+include /usr/share/ocaml/ocamlvars.mk
+
+export PKG_CONFIG_PATH=/usr/lib/$(DEB_BUILD_ARCH)/pkgconfig
 
 %:
-	dh $@
+	dh $@ --with ocaml --buildsystem ocaml_dune
+
+override_dh_auto_configure:
+	ocaml configure.ml --version $(DEB_VERSION_UPSTREAM)
+
+# Tests are not compatible with bytecode architectures
+override_dh_auto_test:
+ifdef ($(OCAML_OPT_ARCH))
+	dh_auto_test
+endif

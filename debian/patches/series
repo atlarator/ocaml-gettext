@@ -1,0 +1,5 @@
+0001-Do-not-mark-ml2c_lc-as-inline-due-to-changed-semanti.patch
+0002-Fix-a-spelling-error.patch
+0003-Fix-compilation-with-camomile-2.0.0.patch
+0004-Fix-compilation-with-OCaml-5.x.patch
+0005-Fix-compilation-with-OCaml-5.3.0.patch

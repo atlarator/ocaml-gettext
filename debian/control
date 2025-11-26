@@ -1,15 +1,58 @@
-Source: template-repository
-Section: unknown
+Source: ocaml-gettext
+Section: ocaml
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Uploaders: Kyle Robbertze <paddatrapper@debian.org>
+Build-Depends: camlp4,
+               camlp4-extra,
+               cppo,
+               debhelper-compat (= 13),
+               dh-ocaml (>= 1.2.2),
+               libbenchmark-ocaml-dev,
+               libcamomile-ocaml-dev (>= 2.0.0),
+               libdune-ocaml-dev,
+               libfileutils-ocaml-dev,
+               liblablgtk3-ocaml-dev,
+               libounit-ocaml-dev,
+               ocaml-dune,
+               ocaml-findlib,
+               ocaml
+Standards-Version: 4.7.2
+Vcs-Git: https://salsa.debian.org/ocaml-team/ocaml-gettext.git
+Vcs-Browser: https://salsa.debian.org/ocaml-team/ocaml-gettext
+Homepage: https://github.com/gildor478/ocaml-gettext
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: libgettext-ocaml
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${misc:Depends}, ${ocaml:Depends}, ${shlibs:Depends}
+Provides: ${ocaml:Provides}
+Description: OCaml internationalization shared library
+ This library provides utilities and libraries to enable localization
+ in OCaml programs. It is based on the same principle of GNU gettext.
+ .
+ The package provides two libraries to do effectively translation :
+  - gettext-camomile : pure OCaml implementation of gettext
+  - gettext-stub : implementation using the gettext library.
+ .
+ This package contains shared library.
+
+Package: libgettext-ocaml-dev
+Architecture: any
+Depends: libcamomile-ocaml-dev,
+         libfileutils-ocaml-dev,
+         libgettext-ocaml (= ${binary:Version}),
+         ${misc:Depends},
+         ${ocaml:Depends},
+         ${shlibs:Depends}
+Provides: ${ocaml:Provides}
+Suggests: ocaml-findlib
+Description: OCaml internationalization library
+ This library provides utilities and libraries to enable localization
+ in OCaml programs. It is based on the same principle of GNU gettext.
+ .
+ The package provides two libraries to do effectively translation :
+  - gettext-camomile : pure OCaml implementation of gettext
+  - gettext-stub : implementation using the gettext library.
+ .
+ This package contains header, OCaml library and devel tools.
